@@ -1,0 +1,119 @@
+{
+  "definition_status": "Plain-language interpretations of label names, not recovered original annotation guidelines. Fine-grained inclusion/exclusion, material distinctions, and object-part rules are not documented in available records.",
+  "classes": [
+    {
+      "id": 0,
+      "name": "aluminumCan_awss",
+      "display_name": "Aluminum can",
+      "description": "Aluminum beverage or food can."
+    },
+    {
+      "id": 1,
+      "name": "aluminumFoil_awss",
+      "display_name": "Aluminum foil",
+      "description": "Sheet or crumpled aluminum foil."
+    },
+    {
+      "id": 2,
+      "name": "apple_awss",
+      "display_name": "Apple",
+      "description": "Apple fruit."
+    },
+    {
+      "id": 3,
+      "name": "banana_awss",
+      "display_name": "Banana",
+      "description": "Banana fruit or peel."
+    },
+    {
+      "id": 4,
+      "name": "battery_awss",
+      "display_name": "Battery",
+      "description": "Discarded battery; chemistry is not encoded."
+    },
+    {
+      "id": 5,
+      "name": "bolt_awss",
+      "display_name": "Bolt",
+      "description": "Threaded bolt fastener."
+    },
+    {
+      "id": 6,
+      "name": "bottle_awss",
+      "display_name": "Bottle",
+      "description": "Bottle; material is not encoded by the label."
+    },
+    {
+      "id": 7,
+      "name": "cigarette_awss",
+      "display_name": "Cigarette",
+      "description": "Cigarette or cigarette butt."
+    },
+    {
+      "id": 8,
+      "name": "egg_awss",
+      "display_name": "Egg",
+      "description": "Egg or eggshell."
+    },
+    {
+      "id": 9,
+      "name": "foodContainer_awss",
+      "display_name": "Food container",
+      "description": "Food container; material is not encoded by the label."
+    },
+    {
+      "id": 10,
+      "name": "juiceBox_awss",
+      "display_name": "Juice box",
+      "description": "Juice carton or juice box."
+    },
+    {
+      "id": 11,
+      "name": "leaf_awss",
+      "display_name": "Leaf",
+      "description": "Plant leaf."
+    },
+    {
+      "id": 12,
+      "name": "nut_awss",
+      "display_name": "Nut (fastener)",
+      "description": "Nut fastener, paired conceptually with bolt; not an edible nut."
+    },
+    {
+      "id": 13,
+      "name": "orange_awss",
+      "display_name": "Orange",
+      "description": "Orange fruit."
+    },
+    {
+      "id": 14,
+      "name": "paperBag_awss",
+      "display_name": "Paper bag",
+      "description": "Paper shopping or carrying bag."
+    },
+    {
+      "id": 15,
+      "name": "paperCup_awss",
+      "display_name": "Paper cup",
+      "description": "Paper drinking cup."
+    },
+    {
+      "id": 16,
+      "name": "paper_awss",
+      "display_name": "Paper",
+      "description": "Loose paper material."
+    },
+    {
+      "id": 17,
+      "name": "plasticFoodPacket_awss",
+      "display_name": "Plastic food packet",
+      "description": "Plastic packet or wrapper associated with food."
+    },
+    {
+      "id": 18,
+      "name": "plasticPacket_awss",
+      "display_name": "Plastic packet",
+      "description": "Plastic packet or bag; original boundary against food packets is undocumented."
+    }
+  ]
+}

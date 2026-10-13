@@ -1,0 +1,21 @@
+# Suggested starting point for NEW training initialized from weights/best.pt.
+# These are not the hyperparameters that produced the released checkpoint.
+epochs: 50
+patience: 15
+batch: 8
+imgsz: 640
+workers: 4
+cache: false
+optimizer: AdamW
+lr0: 0.001
+lrf: 0.01
+momentum: 0.937
+weight_decay: 0.0005
+warmup_epochs: 3.0
+seed: 0
+deterministic: true
+amp: true
+close_mosaic: 10
+val: true
+save: true
+plots: true

@@ -1,0 +1,34 @@
+# Local environments and generated outputs
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+outputs/
+runs/
+*.log
+*.cache
+*.npy
+.env
+.env.*
+local-data.yaml
+
+# Keep locally supplied datasets and training artifacts out of the release.
+datasets/
+data/
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.bmp
+*.tif
+*.tiff
+*.mp4
+*.avi
+*.pt
+*.onnx
+*.engine
+
+# Include precisely the released checkpoint, even inside the parent project.
+!weights/best.pt

@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: >-
+  If you use this model, its weights, code, or a fine-tuned derivative,
+  cite the research paper in preferred-citation. Use of the released
+  software and weights is governed by the AGPL-3.0 license in LICENSE.
+type: software
+title: YOLO11n Waste Sorting Model
+authors:
+  - family-names: Siyad
+    given-names: Rahat Khan
+  - family-names: Islam
+    given-names: Md Mehrabul
+  - family-names: Nasseef
+    given-names: Abdullah Omar
+  - family-names: Ahmed
+    given-names: Khandaker Siam
+  - family-names: Hasan
+    given-names: Muhammad Samin
+  - family-names: Mashfy
+    given-names: Mohammad Muhtasim
+license: AGPL-3.0-only
+preferred-citation:
+  type: article
+  title: >-
+    AI-driven waste management system using deep learning model for detection
+    and novel dual-axis actuator-based waste categorization
+  authors:
+    - family-names: Siyad
+      given-names: Rahat Khan
+    - family-names: Islam
+      given-names: Md Mehrabul
+    - family-names: Nasseef
+      given-names: Abdullah Omar
+    - family-names: Ahmed
+      given-names: Khandaker Siam
+    - family-names: Hasan
+      given-names: Muhammad Samin
+    - family-names: Mashfy
+      given-names: Mohammad Muhtasim
+  journal: Results in Engineering
+  volume: "30"
+  start: "111286"
+  year: 2026
+  doi: 10.1016/j.rineng.2026.111286
+  url: https://doi.org/10.1016/j.rineng.2026.111286

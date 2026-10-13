@@ -1,0 +1,7 @@
+# Tested with Python 3.12.3. Install a suitable PyTorch build first (see README).
+ultralytics==8.3.146
+torch==2.7.0
+torchvision==0.22.0
+numpy==1.26.4
+opencv-python==4.11.0.86
+PyYAML==6.0.2

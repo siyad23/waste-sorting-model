@@ -1,0 +1,27 @@
+# Dataset contents are NOT distributed. Supply your own authorized data.
+# Change this to an ABSOLUTE path before training or evaluation.
+path: /absolute/path/to/your/waste-dataset
+train: train/images
+val: valid/images
+test: test/images
+nc: 19
+names:
+  0: aluminumCan_awss
+  1: aluminumFoil_awss
+  2: apple_awss
+  3: banana_awss
+  4: battery_awss
+  5: bolt_awss
+  6: bottle_awss
+  7: cigarette_awss
+  8: egg_awss
+  9: foodContainer_awss
+  10: juiceBox_awss
+  11: leaf_awss
+  12: nut_awss
+  13: orange_awss
+  14: paperBag_awss
+  15: paperCup_awss
+  16: paper_awss
+  17: plasticFoodPacket_awss
+  18: plasticPacket_awss
