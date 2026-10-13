@@ -1,0 +1,53 @@
+{
+  "source": "results/benchmark_results/benchmark_metrics.json",
+  "weights_association": "Existing project benchmark, attributed to train22 best.pt by the associated report; original evaluation command/hash were not recorded.",
+  "split": "val (inferred from benchmark_model.py using model.val with no split override; original command not recorded)",
+  "imgsz": 640,
+  "imgsz_status": "Inferred from model training arguments; no separate benchmark settings were saved.",
+  "metric_scale": "0 to 1",
+  "map50": 0.9051532549800148,
+  "map50_95": 0.7225340113586504,
+  "map75": 0.7920973830533794,
+  "mean_precision": 0.8787860696769827,
+  "mean_recall": 0.8543340397355352,
+  "evaluated_class_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "unrepresented_class_ids": [
+    6
+  ],
+  "per_class_mapping": "Arrays are indexed by ap_class_index, not by position in the full class list.",
+  "training_epoch_100_metrics": {
+    "metrics/precision(B)": 0.87887,
+    "metrics/recall(B)": 0.85405,
+    "metrics/mAP50(B)": 0.90519,
+    "metrics/mAP50-95(B)": 0.72269,
+    "val/box_loss": 0.81301,
+    "val/cls_loss": 0.54126,
+    "val/dfl_loss": 1.13783,
+    "fitness": 0.74094
+  },
+  "limitations": [
+    "Not an independently verified test-set benchmark.",
+    "Class 6 bottle_awss has no validation ground truth in the local dataset snapshot.",
+    "No supported end-to-end FPS measurement is included.",
+    "No single overall F1 is reported; the old report used maximum per-class F1."
+  ]
+}

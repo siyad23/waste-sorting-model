@@ -16,7 +16,10 @@ governed by [AGPL-3.0](LICENSE).
 
 ## Identity and intended use
 
-This is a YOLO11 nano object detector trained for 19 waste-related categories.
+This is a YOLO11 nano object detector trained for 19 waste-related classes.
+The paper groups these classes into four sorting categories: **biodegradable,
+plastic, metal, and hazardous**. The full mapping is in
+[README.md](README.md#waste-categories).
 It outputs axis-aligned boxes, class IDs, and confidence scores. Intended uses
 include waste sorting research, inference experiments, and initialization for
 fine-tuning on authorized data. A class prediction does not determine material
@@ -29,6 +32,7 @@ chemistry, disposal instructions, or local recyclability.
 | Architecture | Ultralytics YOLO11n, three detection scales (strides 8/16/32) |
 | Parameters | 2,593,545 before inference fusion |
 | Classes | 19; IDs and names in `metadata/classes.json` |
+| Main sorting categories | Biodegradable, plastic, metal, hazardous |
 | Input | 3-channel images; training target size 640 |
 | Checkpoint framework | Ultralytics 8.3.146 |
 | Checkpoint timestamp | 2025-10-18T09:14:52.219681 (timezone not recorded) |
@@ -69,44 +73,39 @@ the historical training dataset.
 Full hyperparameters and annotation structure are in
 [docs/TRAINING.md](docs/TRAINING.md) and [docs/DATASET.md](docs/DATASET.md).
 
-## Evaluation evidence
+## Published evaluation
 
-The following values describe the saved local benchmark and training records.
-For published experimental results, consult the
-[paper](https://doi.org/10.1016/j.rineng.2026.111286).
+The benchmark for this release is **Table 3B** of the
+[paper](https://doi.org/10.1016/j.rineng.2026.111286). All values below are
+percentages, transcribed from the publication.
 
-| Metric | Saved benchmark JSON | Training history, epoch 100 |
-| --- | ---: | ---: |
-| mAP@0.50 | 0.905153 | 0.90519 |
-| mAP@0.50:0.95 | 0.722534 | 0.72269 |
-| Mean precision | 0.878786 | 0.87887 |
-| Mean recall | 0.854334 | 0.85405 |
+| Metric | Training set | Validation set | Test set |
+| --- | ---: | ---: | ---: |
+| mAP@0.50 | 90.79% | 89.69% | 90.17% |
+| mAP@0.50:0.95 | 73.37% | 71.05% | 70.43% |
+| Mean precision | 90.12% | 86.44% | 85.48% |
+| Mean recall | 87.99% | 84.50% | 84.99% |
+| F1 score | 89.04% | 85.46% | 85.23% |
 
-The benchmark values come from the original project's
-`results/benchmark_results/benchmark_metrics.json`. The original benchmark
-script calls `model.val(data=...)` without a split override; validation is the
-inferred split. There is no saved invocation, dataset fingerprint, or benchmark
-checkpoint hash. These are historical reported metrics, not a newly verified
-test-set evaluation.
+Section 2.4.3 describes precision and recall as macro-averaged across classes
+and F1 as their harmonic mean. The reported test precision, recall, and F1 use
+the confidence threshold that maximized F1 during validation. mAP summarizes
+the precision–recall curve across confidence thresholds.
 
-The per-class arrays identify classes using `ap_class_index`. The IDs are
-`0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18`.
-`metrics/per_class_metrics.csv` uses those IDs, leaving class 6 unscored.
-Treating array positions as class IDs would shift every label after `bolt_awss`.
-
-No overall F1 or throughput claim is included. Taking the maximum of a per-class
-F1 array is not an overall F1. The inspected records do not support a reproducible
-end-to-end FPS measurement. Other narrative reports contain inconsistent labels
-and scores and are not used as release evidence.
+[metrics/benchmark_summary.json](metrics/benchmark_summary.json) provides the
+published values, source DOI, and table reference. These are paper-reported
+results; local software checks are documented in
+[docs/VALIDATION.md](docs/VALIDATION.md). Training logs and the superseded local
+benchmark are retained as historical records in `metrics/training_history.csv`
+and [provenance/legacy_benchmark/](provenance/legacy_benchmark/README.md).
 
 ## Known limitations
 
-- `bottle_awss` has 4,001 training boxes, **zero validation boxes**, and only
-  28 test boxes in 9 test images. Validation cannot assess this class.
+- In the local dataset snapshot, `bottle_awss` has 4,001 training boxes,
+  **zero validation boxes**, and only 28 test boxes in 9 test images.
+  Evaluation on that local validation split cannot assess this class.
 - Classes are imbalanced: `plasticPacket_awss` has 40,154 boxes overall, while
   `foodContainer_awss` has 435. See `metadata/class_distribution.csv`.
-- Historical validation AP@0.50:0.95 is lowest for `leaf_awss` (0.3722),
-  `bolt_awss` (0.3784), and `cigarette_awss` (0.4152).
 - Label descriptions interpret the names; the original annotation policy is
   unavailable. Material composition and boundaries between similar packaging
   classes are not fully specified.

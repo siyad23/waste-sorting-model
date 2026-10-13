@@ -81,14 +81,16 @@ polygon-to-box utility is archived as
 `provenance/original_polygon_to_box.py`; its enclosing-box conversion is
 described in [DATASET.md](DATASET.md). Sample-level conversion history is unknown.
 
-## Checkpoint selection and recorded results
+## Checkpoint selection and published results
 
 Epoch 100 has the largest mAP@0.50:0.95 in the available history and matches
-the training metrics in the released checkpoint. Its recorded precision is
-0.87887, recall 0.85405, mAP@0.50 0.90519, and mAP@0.50:0.95 0.72269.
-Historical benchmark values are documented separately in
-[../MODEL_CARD.md](../MODEL_CARD.md); they are not verified independent test
-results. Missing validation coverage for class 6 limits checkpoint assessment.
+the training metrics in the released checkpoint. The epoch-level history is
+preserved in [../metrics/training_history.csv](../metrics/training_history.csv).
+
+Use **Table 3B of the paper** for the reported training, validation, and test
+benchmark. These published results are reproduced in
+[../MODEL_CARD.md](../MODEL_CARD.md#published-evaluation) and
+[../metrics/benchmark_summary.json](../metrics/benchmark_summary.json).
 
 ## Fine-tune from the released weights
 

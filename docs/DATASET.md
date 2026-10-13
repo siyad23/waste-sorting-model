@@ -41,6 +41,12 @@ image counts must not be described as verified independent original captures.
 
 ## Class IDs and meanings
 
+The paper's **Table 2B** groups the 19 classes into **biodegradable, plastic,
+metal, and hazardous** waste. See the complete
+[category mapping in the README](../README.md#waste-categories).
+The detector outputs the individual class IDs below; applications can map them
+to the four main categories for sorting.
+
 Use exactly the following ordering with the released weights. The `_awss`
 suffix is part of each stored class name. Human-readable descriptions interpret
 the names; they are **not the original annotation manual**. Exact inclusion
@@ -69,10 +75,10 @@ rules, object-part labeling, and material distinctions remain undocumented.
 | 18 | `plasticPacket_awss` | Plastic packet or bag; original boundary against food packets is undocumented. | 31,801 | 4,387 | 3,966 |
 
 In particular, the intended distinction between generic plastic packets and
-food packets needs an explicit annotation policy in any new dataset. Bottle
-and container labels do not specify a material. The class interpretation for
-`nut_awss` is a fastener, consistent with `bolt_awss`; this interpretation is
-not independently verified against a recovered labeling guide.
+food packets needs an explicit annotation policy in any new dataset. The paper
+groups bottle and food-container classes under **Plastic**, although their
+stored label names do not encode a material subtype. The `nut_awss` class is
+grouped under **Metal** alongside `bolt_awss` in the paper.
 
 Machine-readable labels are in [../metadata/classes.json](../metadata/classes.json),
 and the training YAML is [../configs/data.yaml](../configs/data.yaml).

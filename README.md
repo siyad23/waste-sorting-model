@@ -5,10 +5,13 @@ Research model accompanying
 novel dual-axis actuator-based waste categorization**](https://doi.org/10.1016/j.rineng.2026.111286),
 published in *Results in Engineering* (2026).
 
-This pretrained YOLO11n object detector recognizes **19 waste-related classes**
-and includes runnable inference, fine-tuning, and evaluation commands. The
-released checkpoint is an exact copy of `runs/detect/train22/weights/best.pt`
-from the original project.
+This pretrained YOLO11n object detector recognizes **19 waste-related classes**,
+grouped into **four main sorting categories: biodegradable, plastic, metal,
+and hazardous**. It includes runnable inference, fine-tuning, and evaluation
+commands. The released checkpoint is an exact copy of
+`runs/detect/train22/weights/best.pt` from the original project.
+
+**Repository:** [siyad23/waste-sorting-model](https://github.com/siyad23/waste-sorting-model)
 
 **If you use this model, its weights, code, or a fine-tuned derivative, cite the
 paper below.** Use of the released software and weights is governed by
@@ -19,6 +22,24 @@ documentation or acknowledgments of projects that use this work.
 aggregate dataset composition, the annotation specification, and training records.
 Inference needs only the weights and your own input. Fine-tuning and evaluation
 require a dataset you are authorized to use.
+
+## Waste categories
+
+The paper's sorting system groups the 19 detection classes into four main
+categories, as listed in
+[Table 2B](https://doi.org/10.1016/j.rineng.2026.111286):
+
+| Main category | Detection classes | Class count |
+| --- | --- | ---: |
+| **Biodegradable** | Paper bag, orange, leaf, cigarette, paper cup, banana, apple, paper, juice box, egg | 10 |
+| **Plastic** | Plastic packet, bottle, plastic food packet, food container | 4 |
+| **Metal** | Bolt, nut, aluminum can, aluminum foil | 4 |
+| **Hazardous** | Battery | 1 |
+
+The model and inference scripts output the **19 individual class IDs and names**.
+Use the grouping above when mapping detections to the paper's four-bin sorting
+system. Stable class IDs and stored names are documented in
+[docs/DATASET.md](docs/DATASET.md#class-ids-and-meanings).
 
 ## Cite this work
 
@@ -72,8 +93,7 @@ waste-sorting-model/
 │   ├── dataset_statistics.json      # Aggregate local dataset snapshot
 │   └── class_distribution.csv       # Image/box counts by class and split
 ├── metrics/
-│   ├── benchmark_summary.json
-│   ├── per_class_metrics.csv        # Correctly mapped by recorded class ID
+│   ├── benchmark_summary.json       # Paper Table 3B: train, validation, test
 │   └── training_history.csv         # 100 epochs of scalar metrics
 ├── scripts/
 │   ├── predict.py
@@ -87,7 +107,8 @@ waste-sorting-model/
 │   ├── TRAINING.md
 │   ├── PUBLISHING.md
 │   └── VALIDATION.md
-└── provenance/                      # Original source and saved run arguments
+└── provenance/                      # Original source and historical records
+    ├── legacy_benchmark/            # Archived local benchmark, superseded by paper
     ├── original_training.py
     ├── original_polygon_to_box.py
     └── train22_args.yaml
@@ -95,10 +116,14 @@ waste-sorting-model/
 
 ## Install
 
-Run commands from this repository's root. **Python 3.12** matches the tested
-environment; the pinned dependencies also target Python 3.10–3.12.
+Clone the published repository, then run commands from its root.
+**Python 3.12** matches the tested environment; the pinned dependencies also
+target Python 3.10–3.12.
 
 ```bash
+git clone https://github.com/siyad23/waste-sorting-model.git
+cd waste-sorting-model
+
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -186,26 +211,23 @@ python scripts/evaluate.py --data local-data.yaml --weights outputs/train/finetu
 These commands write scalar JSON and a per-class CSV; they check that dataset and
 checkpoint labels agree. Classes without ground-truth examples are left unscored.
 
-## Recorded performance
+## Performance reported in the paper
 
-The values below summarize saved local benchmark records. Refer to the
-[paper](https://doi.org/10.1016/j.rineng.2026.111286) for the published
-experimental results and system evaluation.
+The following results are reproduced from **Table 3B** of the
+[paper](https://doi.org/10.1016/j.rineng.2026.111286). All values are percentages.
 
-The existing benchmark JSON records the following values. Its split is inferred
-to be **validation** from the original evaluation script; an evaluation command
-and dataset hash were not preserved.
+| Metric | Training set | Validation set | Test set |
+| --- | ---: | ---: | ---: |
+| mAP@0.50 | 90.79% | 89.69% | **90.17%** |
+| mAP@0.50:0.95 | 73.37% | 71.05% | **70.43%** |
+| Mean precision | 90.12% | 86.44% | **85.48%** |
+| Mean recall | 87.99% | 84.50% | **84.99%** |
+| F1 score | 89.04% | 85.46% | **85.23%** |
 
-| Metric | Value |
-| --- | ---: |
-| mAP@0.50 | 90.52% |
-| mAP@0.50:0.95 | 72.25% |
-| Mean precision | 87.88% |
-| Mean recall | 85.43% |
-
-Only **18 classes** have ground truth in that benchmark. Class 6 (`bottle_awss`)
-is absent from the local validation split. The aggregate scores do not measure
-all 19 classes. See [MODEL_CARD.md](MODEL_CARD.md) for limitations and provenance.
+Machine-readable published results are in
+[metrics/benchmark_summary.json](metrics/benchmark_summary.json).
+See [MODEL_CARD.md](MODEL_CARD.md#published-evaluation) for evaluation context
+and [docs/VALIDATION.md](docs/VALIDATION.md) for local software checks.
 
 ## Dataset documentation and licensing
 
@@ -221,6 +243,7 @@ rights to the excluded dataset. See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md
 Include the accompanying paper citation when using this work, as described in
 [Cite this work](#cite-this-work).
 
-To place this folder in its own GitHub repository, follow
-[docs/PUBLISHING.md](docs/PUBLISHING.md). Local validation results are recorded in
-[docs/VALIDATION.md](docs/VALIDATION.md).
+The model is published at
+[siyad23/waste-sorting-model](https://github.com/siyad23/waste-sorting-model).
+Repository maintenance and release guidance are in
+[docs/PUBLISHING.md](docs/PUBLISHING.md).

@@ -5,6 +5,7 @@ message: >-
   software and weights is governed by the AGPL-3.0 license in LICENSE.
 type: software
 title: YOLO11n Waste Sorting Model
+repository-code: https://github.com/siyad23/waste-sorting-model
 authors:
   - family-names: Siyad
     given-names: Rahat Khan
